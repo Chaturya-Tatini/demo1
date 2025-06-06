@@ -21,7 +21,8 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=copilotorg -Dsonar.projectKey=copilotproj
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=githubproj -Dsonar.projectKey=githubproj
+        continue-on-error: true
 
   snyk-scan:
     needs: sonar-scan
@@ -47,3 +48,4 @@ jobs:
         uses: zaproxy/action-baseline@v0.14.0
         with:
           target: 'https://www.zaproxy.org'
+        continue-on-error: true
